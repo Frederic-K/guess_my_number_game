@@ -27,5 +27,26 @@ fn main() {
                 continue;
             }
         };
+
+        attempts_taken += 1;
+
+        if guess == secret_number {
+            println!(
+                "Congratulations! You guessed the magic number {} correctly!",
+                guess
+            );
+            break;
+        } else if guess < secret_number {
+            println!("Too low. Try again!");
+        } else {
+            println!("Too high. Try again!");
+        }
+
+        if attempts_taken == max_attempts {
+            println!(
+                "You've run out of attempts. The secret number was {}. Better luck next time!",
+                secret_number
+            );
+        }
     }
 }
