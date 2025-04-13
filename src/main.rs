@@ -10,4 +10,22 @@ fn main() {
 
     let secret_number: u32 = rand::rng().random_range(..=25);
     let mut attempts_taken: u32 = 0;
+
+    while attempts_taken < max_attempts {
+        println!("Attempts left: {}", max_attempts - attempts_taken);
+        println!("Guess a number between 1 and 25:");
+
+        let mut guess = String::new();
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
+
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Invalid input. Please enter a number.");
+                continue;
+            }
+        };
+    }
 }
