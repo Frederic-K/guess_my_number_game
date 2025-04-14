@@ -10,10 +10,10 @@ fn main() {
     println!("You have {} attempts to guess the number.", max_attempts);
 
     let secret_number: u32 = rand::rng().random_range(..=25);
-    let mut attempts: u32 = 0;
+    let mut attempts: u32 = max_attempts;
 
-    while attempts < max_attempts {
-        println!("Attempts left: {}", max_attempts - attempts);
+    while attempts > 0 {
+        println!("Attempts left: {}", attempts);
         println!("Guess a number between 1 and 25:");
 
         let mut guess = String::new();
@@ -29,7 +29,7 @@ fn main() {
             }
         };
 
-        attempts += 1;
+        println!("You guessed: {}", guess);
 
         // if guess == secret_number {
         //     println!(
@@ -45,18 +45,20 @@ fn main() {
 
         // Ordering
         match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
             Ordering::Equal => {
                 println!(
                     "Congratulations! You guessed the magic number {} correctly!",
-                    guess
+                    secret_number
                 );
-                break;
+                return;
             }
-            Ordering::Less => println!("Too low. Try again!"),
-            Ordering::Greater => println!("Too high. Try again!"),
         }
 
-        if attempts == max_attempts {
+        attempts -= 1;
+
+        if attempts == 0 {
             println!(
                 "You've run out of attempts. The secret number was {}. Better luck next time!",
                 secret_number
