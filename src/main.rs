@@ -17,6 +17,7 @@ fn main() {
         println!("Guess a number between 1 and 25:");
 
         let mut guess = String::new();
+
         io::stdin()
             .read_line(&mut guess)
             .expect("Failed to read line");
@@ -58,11 +59,15 @@ fn main() {
 
         attempts -= 1;
 
-        if attempts == 0 {
-            println!(
-                "You've run out of attempts. The secret number was {}. Better luck next time!",
-                secret_number
-            );
-        }
+        // if attempts == 0 {
+        //     println!(
+        //         "You've run out of attempts. The secret number was {}. Better luck next time!",
+        //         secret_number
+        //     );
+        // }
     }
+    println!(
+        "You've run out of attempts. The secret number was {}. Better luck next time!",
+        secret_number
+    );
 }
